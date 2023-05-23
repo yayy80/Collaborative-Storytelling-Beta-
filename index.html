@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Collaborative Storytelling</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Collaborative Storytelling!</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Write a Chapter</h2>
+      <form id="chapterForm" action="send_story.php" method="POST">
+        <label for="authorName">Your Name:</label>
+        <input type="text" id="authorName" name="authorName" required>
+        <br>
+        <label for="chapterContent">Chapter Content:</label>
+        <textarea id="chapterContent" name="chapterContent" rows="4" required></textarea>
+        <br>
+        <input type="submit" value="Submit Chapter">
+      </form>
+    </section>
+
+    <section>
+      <h2>Story Chapters</h2>
+      <div id="chaptersContainer">
+        <!-- Chapters will be dynamically added here -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Collaborative Storytelling &copy; 2023</p>
+  </footer>
+
+  <script>
+    // JavaScript code for handling chapter display (remains the same)
+
+    // Get the chapters container
+    const chaptersContainer = document.getElementById('chaptersContainer');
+
+    // Add a listener for form submission
+    document.getElementById('chapterForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get the values from the form
+      const authorName = document.getElementById('authorName').value;
+      const chapterContent = document.getElementById('chapterContent').value;
+
+      // Create a new chapter element
+      const chapterElement = document.createElement('div');
+      chapterElement.innerHTML = `<h3>${authorName}</h3><p>${chapterContent}</p>`;
+
+      // Add the chapter to the chapters container
+      chaptersContainer.appendChild(chapterElement);
+
+      // Reset the form
+      this.reset();
+    });
+  </script>
+</body>
+</html>
